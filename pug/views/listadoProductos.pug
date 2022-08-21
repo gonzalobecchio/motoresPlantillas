@@ -1,0 +1,29 @@
+extends layout.pug
+
+block content
+    div(class='container')
+        div(class="row justify-content-center align-content-center py-4")
+            h1 Listado Productos
+        div(class="row justify-content-center align-content-center py-4 header-table")
+            div(class='col-2' ) #
+            div(class='col-4') Nombre
+            div(class='col-4') Precio
+            div(class='col-2') Imagen
+        if message  
+            div(class="row justify-content-center align-content-center py-2 rows-table")
+                h3(class="text-center")
+                    =message
+        else    
+            each producto in productos  
+                div(class="row justify-content-center align-content-center py-2 rows-table")
+                    div(class="col-2 d-flex align-items-center")
+                        =producto.id
+                    div(class="col-4 d-flex align-items-center")
+                        =producto.title
+                    div(class="col-4 d-flex align-items-center")
+                        =producto.price
+                    div(class="col-2 d-flex align-items-center")
+                        img(src='/'+ producto.thumbnail, height=50, width=50)
+        a(href="/api/") Agregar Producto
+            
+

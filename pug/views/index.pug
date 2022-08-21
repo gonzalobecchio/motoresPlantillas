@@ -1,0 +1,28 @@
+extends layout.pug 
+block content
+    div(class="container")
+        div(class='row d-flex align-item-center justify-content-center')
+            form(action="/api/productos" method="post" enctype="multipart/form-data")
+                div(class="my-3")
+                    if messageSuccess
+                        div(class="alert alert-success")
+                            =messageSuccess
+                    if errores
+                        div(class="alert alert-warning p-1 mt-1")
+                            ul  
+                                each error in errores   
+                                    li=error.err
+                h3 Agregar Producto
+                div(class="mb-2")
+                    label Nombre *
+                    input(type="text" name="title" class="form-control" value=prodVal ? prodVal.title : "")
+                div(class="mb-2")
+                    label Precio *
+                    input(type="text" name="price" class="form-control" value=prodVal ? prodVal.price : "")
+                div(class="mb-2")
+                    label Foto * 
+                    input(type="file" name="my-file" id="file" class="form-control")
+                input(type="submit" value="Save" class="boton")
+        div(class="row d-flex align-item-center justify-content-center mt-5")
+            a(href="/api/productos") Ver Listado
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor de plantilla Handlebars</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex align-item-center justify-content-center">
+            <form action="/api/productos" method="post" enctype="multipart/form-data">
+                <div class="my-3">
+                    {{#if messageSuccess }} 
+                        <div class="alert alert-success">
+                            {{ messageSuccess }}
+                        </div>
+                    {{/if}}
+                        <div class="alert alert-warning p-1 mt-1" {{#if errores}} {{else}} hidden  {{/if}} >
+                            <ul>
+                                {{#if errores}}
+                                    {{#each errores}}
+                                        <li>{{this.err}}</li>
+                                    {{/each}}
+                                {{/if}}                        
+                            </ul>
+                        </div>
+                </div>
+                <h3>Agregar Producto</h3>
+                <div class="mb-2">
+                    <label for="">Nombre *</label>
+                    <input type="text" name="title" class="form-control" value="{{#if prodVal }}{{prodVal/title}}{{/if}}">
+                </div>
+                <div class="mb-2">
+                    <label for="">Precio *</label>
+                    <input type="text" name="price" class="form-control" value="{{#if prodVal }}{{prodVal/price}}{{/if}}">
+                </div>
+                <div class="mb-2">
+                    <label for="">Foto *</label>
+                    <input type="file" name="my-file" id="file" class="form-control">
+                </div>
+                <input type="submit" value="Save" class="boton">
+            </form>
+        </div>
+        <div class="row d-flex align-item-center justify-content-center mt-5">
+            <a href="/api/productos">Ver Listado</a>
+        </div>
+    </div>
+</body>
+
+</html>
